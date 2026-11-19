@@ -1,0 +1,29 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: var(--space-7);
+}
+.index {
+  color: var(--c-accent);
+}
+.kicker {
+  color: var(--c-white);
+  white-space: nowrap;
+}
+.line {
+  flex: 1;
+  height: 1px;
+  background: var(--c-line-strong);
+  min-width: 24px;
+}
+.status {
+  color: var(--c-muted);
+  font-size: var(--fs-mono-xs);
+  white-space: nowrap;
+}
+@media (max-width: 560px) {
+  .status {
+    display: none;
+  }
+}

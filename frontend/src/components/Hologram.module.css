@@ -1,0 +1,38 @@
+.svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.ring,
+.core {
+  transform-origin: 300px 300px;
+  transform-box: view-box;
+}
+.r1 { animation: spin 120s linear infinite; }
+.r2 { animation: spin 70s linear infinite reverse; }
+.r3 { animation: spin 40s linear infinite; }
+.r4 { animation: spin 90s linear infinite reverse; }
+.r5 { animation: spin 18s linear infinite; }
+.glow { animation: breathe 5s ease-in-out infinite; transform-origin: 300px 300px; transform-box: view-box; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes breathe { 50% { opacity: 0.6; transform: scale(0.94); } }
+
+.tick { stroke: var(--c-muted-2); stroke-width: 1; }
+.tickMajor { stroke: var(--c-muted); stroke-width: 1.5; }
+.hair { fill: none; stroke: var(--c-line-strong); stroke-width: 1; }
+.segA { fill: none; stroke: var(--c-accent-line); stroke-width: 6; }
+.segB { fill: none; stroke: rgba(243, 245, 247, 0.22); stroke-width: 2; }
+.dots { fill: none; stroke: var(--c-muted-2); stroke-width: 2; stroke-dasharray: 1 7; stroke-linecap: round; }
+.arcBright { fill: none; stroke: var(--c-accent); stroke-width: 1.5; }
+.arcThick { fill: none; stroke: var(--c-accent); stroke-width: 3; stroke-linecap: butt; }
+.coreRing { fill: rgba(56, 189, 248, 0.06); stroke: var(--c-accent); stroke-width: 1.5; }
+.coreTick { stroke: var(--c-accent); stroke-width: 2; }
+.coreDot { fill: var(--c-accent); }
+.label {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  fill: var(--c-muted);
+}
+:global(.mark-ii) .svg { filter: grayscale(1) contrast(1.2); }
+:global(.mark-ii) .segA, :global(.mark-ii) .arcThick { stroke-dasharray: 4 4; }

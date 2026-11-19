@@ -1,0 +1,6 @@
+# Copy to .dev.vars for local development (never commit .dev.vars).
+# Generate values with: npm run gen-key   /   npm run hash-password -- "your-password"
+ENCRYPTION_KEY=
+ADMIN_PASSWORD_HASH=
+ALLOWED_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
+COOKIE_SAMESITE=Lax

@@ -1,0 +1,68 @@
+.sushi {
+  position: relative;
+  padding: calc(var(--hud-h) + var(--space-9)) 0 var(--space-9);
+}
+.pad {
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+  box-sizing: content-box;
+}
+.stageWrap {
+  position: relative;
+  height: min(86vh, 860px);
+  margin: calc(var(--space-6) * -1) 0 0;
+}
+.stage {
+  position: absolute !important;
+  inset: 0;
+}
+.title {
+  position: absolute;
+  left: var(--gutter);
+  bottom: var(--space-6);
+  font-size: var(--fs-h1);
+  letter-spacing: -0.05em;
+  line-height: 0.88;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+.lower {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-8);
+  align-items: start;
+  margin-top: var(--space-7);
+}
+.card {
+  padding: 26px;
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+}
+.cardHead {
+  color: var(--c-muted);
+  font-size: var(--fs-mono-xs);
+}
+.name {
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.card > :last-child {
+  margin-top: 12px;
+}
+@media (max-width: 960px) {
+  .stageWrap {
+    height: min(118vw, 62vh);
+    min-height: 380px;
+  }
+  .lower {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  .title {
+    bottom: var(--space-4);
+  }
+}

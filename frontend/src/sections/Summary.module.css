@@ -1,0 +1,134 @@
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--space-8);
+  align-items: start;
+}
+.intro {
+  display: grid;
+  gap: var(--space-5);
+  align-content: start;
+  position: sticky;
+  top: calc(var(--hud-h) + var(--space-7));
+}
+.intro h2 {
+  margin-bottom: var(--space-4);
+}
+.dossier {
+  padding: clamp(20px, 3.5vw, 40px);
+}
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--c-line-strong);
+  color: var(--c-muted);
+  font-size: var(--fs-mono-xs);
+}
+.stamp {
+  color: var(--c-warn);
+  border: 1px solid rgba(242, 181, 74, 0.5);
+  padding: 4px 8px;
+  font-size: var(--fs-mono-xs);
+}
+.rows {
+  margin: 0;
+}
+.rows > div {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--c-line);
+}
+.rows dt {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+  padding-top: 0.35em;
+}
+.rows dd {
+  margin: 0;
+  font-size: 1.2rem;
+  letter-spacing: -0.01em;
+  white-space: pre-line;
+}
+.status {
+  display: grid;
+  gap: 10px;
+  padding-top: 22px;
+  justify-items: start;
+}
+.line {
+  display: flex;
+  gap: 12px;
+  opacity: 0.45;
+  transition: opacity 0.6s var(--ease-out);
+}
+.line .mono:first-child {
+  color: var(--c-muted);
+}
+.value {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--c-warn);
+}
+.value svg {
+  width: 14px;
+  height: 14px;
+}
+.lineOn {
+  opacity: 1;
+}
+.lineOn .value {
+  color: var(--c-ok);
+}
+.readiness {
+  margin-top: var(--space-8);
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+.readiness svg {
+  width: 72px;
+  height: 72px;
+  transform: rotate(-90deg);
+}
+.track {
+  fill: none;
+  stroke: var(--c-line-strong);
+  stroke-width: 2;
+}
+.fill {
+  fill: none;
+  stroke: var(--c-accent);
+  stroke-width: 3;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  transition: stroke-dashoffset 1.6s var(--ease-out);
+}
+.ready .fill {
+  stroke-dashoffset: 0;
+  stroke: var(--c-ok);
+}
+.readyText {
+  font-size: var(--fs-lead);
+}
+@media (max-width: 960px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  .intro {
+    position: static;
+  }
+  .rows > div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}

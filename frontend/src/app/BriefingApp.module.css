@@ -1,0 +1,24 @@
+.shell {
+  position: relative;
+  min-height: 100vh;
+}
+
+.boot {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+.boot::after {
+  content: '';
+  width: 64px;
+  height: 1px;
+  background: var(--c-accent);
+  animation: boot 1.2s var(--ease-in-out) infinite;
+}
+@keyframes boot {
+  0% { transform: scaleX(0); transform-origin: left; }
+  50% { transform: scaleX(1); transform-origin: left; }
+  51% { transform-origin: right; }
+  100% { transform: scaleX(0); transform-origin: right; }
+}

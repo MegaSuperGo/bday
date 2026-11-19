@@ -1,0 +1,58 @@
+.rail {
+  position: fixed;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30;
+}
+.rail ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}
+.item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  height: 22px;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--c-muted-2);
+}
+.label {
+  font-size: var(--fs-mono-xs);
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+  white-space: nowrap;
+}
+.item:hover .label,
+.item:focus-visible .label {
+  opacity: 1;
+  transform: none;
+}
+.tick {
+  width: 14px;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s var(--ease-out), background 0.3s;
+}
+.reached {
+  color: var(--c-muted);
+}
+.active {
+  color: var(--c-accent);
+}
+.active .tick {
+  width: 28px;
+}
+@media (max-width: 1279px) {
+  .rail {
+    display: none;
+  }
+}

@@ -1,0 +1,396 @@
+/* ---------- Orb ---------- */
+.orb {
+  position: fixed;
+  right: max(20px, env(safe-area-inset-right));
+  bottom: max(20px, env(safe-area-inset-bottom));
+  z-index: 50;
+  width: 88px;
+  height: 88px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, rgba(8, 10, 13, 0.9) 40%, rgba(8, 10, 13, 0) 70%);
+  transition:
+    transform 0.5s var(--ease-out),
+    opacity 0.3s;
+}
+.orb:hover {
+  transform: scale(1.06);
+}
+.orb:focus-visible {
+  outline: 1px solid var(--c-accent);
+  outline-offset: 4px;
+}
+.orbHidden {
+  transform: scale(0.4);
+  opacity: 0;
+  pointer-events: none;
+}
+.orbVisual {
+  position: absolute;
+  inset: -14px;
+  pointer-events: none;
+}
+.orbCanvas {
+  position: absolute;
+  inset: 0;
+}
+.orbLabel {
+  position: absolute;
+  right: calc(100% + 6px);
+  top: 50%;
+  transform: translate(6px, -50%);
+  opacity: 0;
+  font-size: var(--fs-mono-xs);
+  color: var(--c-accent);
+  white-space: nowrap;
+  transition:
+    opacity 0.3s,
+    transform 0.3s var(--ease-out);
+  pointer-events: none;
+}
+.orb:hover .orbLabel,
+.orb:focus-visible .orbLabel {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+/* CSS fallback orb (no WebGL) */
+.cssOrb {
+  position: absolute;
+  inset: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--c-accent);
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.6) 0 18%, rgba(56, 189, 248, 0.08) 40%, transparent 70%);
+  box-shadow: inset 0 0 18px rgba(56, 189, 248, 0.5);
+  animation: cssOrb 3s ease-in-out infinite;
+}
+.cssOrb.thinking {
+  animation-duration: 0.8s;
+}
+.cssOrb.alert {
+  border-color: var(--c-danger);
+  background: radial-gradient(circle, rgba(244, 114, 114, 0.7) 0 18%, transparent 70%);
+}
+@keyframes cssOrb {
+  50% {
+    transform: scale(0.92);
+    opacity: 0.8;
+  }
+}
+
+/* ---------- Panel ---------- */
+.panel {
+  position: fixed;
+  right: max(20px, env(safe-area-inset-right));
+  bottom: max(20px, env(safe-area-inset-bottom));
+  z-index: 55;
+  width: min(420px, calc(100vw - 40px));
+  height: min(640px, calc(100vh - var(--hud-h) - 48px));
+}
+.panel[hidden] {
+  display: none;
+}
+.sheet {
+  position: relative;
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  background: #0d1015;
+  border: 1px solid var(--c-line-strong);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(56, 189, 248, 0.06);
+  overflow: hidden;
+}
+.sheet::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--c-accent), transparent);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 16px 14px;
+  border-bottom: 1px solid var(--c-line);
+}
+.miniOrb {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--c-accent);
+  background: radial-gradient(circle, var(--c-accent) 0 22%, rgba(56, 189, 248, 0.12) 46%, transparent 70%);
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.35);
+  animation: mini 3s ease-in-out infinite;
+  flex: none;
+}
+.miniThinking {
+  animation-duration: 0.7s;
+}
+.miniAlert {
+  border-color: var(--c-danger);
+  background: radial-gradient(circle, var(--c-danger) 0 22%, transparent 70%);
+  box-shadow: 0 0 18px rgba(244, 114, 114, 0.6);
+  animation-duration: 0.4s;
+}
+@keyframes mini {
+  50% {
+    transform: scale(0.88);
+  }
+}
+.headText {
+  display: grid;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+.name {
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  font-size: 0.95rem;
+}
+.state {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  color: var(--c-muted);
+}
+.dotOk,
+.dotOff {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--c-ok);
+}
+.dotOff {
+  background: var(--c-warn);
+}
+.close {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  background: none;
+  border: 1px solid var(--c-line);
+  color: var(--c-muted);
+  border-radius: var(--radius-s);
+}
+.close:hover {
+  color: var(--c-white);
+  border-color: var(--c-line-strong);
+}
+.close svg {
+  width: 18px;
+  height: 18px;
+}
+
+.messages {
+  list-style: none;
+  margin: 0;
+  padding: 18px 16px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  scrollbar-width: thin;
+}
+.msg {
+  display: grid;
+  gap: 6px;
+  max-width: 88%;
+  animation: msgIn 0.4s var(--ease-out);
+}
+.msg p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 0.96rem;
+  line-height: 1.5;
+}
+.meta {
+  font-size: 10px;
+  color: var(--c-muted-2);
+}
+.user {
+  align-self: flex-end;
+  justify-items: end;
+}
+.user p {
+  background: var(--c-accent);
+  color: var(--c-bg);
+  padding: 10px 14px;
+}
+.assistant p {
+  border-left: 2px solid var(--c-accent);
+  padding: 2px 0 2px 14px;
+}
+.system p {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--c-muted);
+  border: 1px dashed var(--c-line-strong);
+  padding: 10px 12px;
+}
+.error p {
+  color: var(--c-warn);
+  border-color: rgba(242, 181, 74, 0.4);
+}
+.alert p {
+  color: var(--c-danger);
+  border-color: rgba(244, 114, 114, 0.5);
+  font-size: 1rem;
+}
+@keyframes msgIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+.typing {
+  display: inline-flex;
+  gap: 4px;
+  padding: 8px 0 8px 14px;
+  border-left: 2px solid var(--c-accent);
+}
+.typing i {
+  width: 18px;
+  height: 2px;
+  background: var(--c-accent);
+  animation: typing 1s ease-in-out infinite;
+}
+.typing i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.typing i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes typing {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scaleX(0.4);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+.suggestions {
+  display: flex;
+  gap: 8px;
+  padding: 0 16px 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.suggestions::-webkit-scrollbar {
+  display: none;
+}
+.suggestions button {
+  flex: none;
+  padding: 8px 12px;
+  background: transparent;
+  border: 1px solid var(--c-line-strong);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: var(--c-white);
+  white-space: nowrap;
+}
+.suggestions button:hover {
+  border-color: var(--c-accent-line);
+  background: var(--c-accent-soft);
+}
+
+.composer {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  padding: 12px 12px 12px 16px;
+  border-top: 1px solid var(--c-line);
+  background: rgba(8, 10, 13, 0.6);
+}
+.composer textarea {
+  flex: 1;
+  resize: none;
+  min-height: 44px;
+  max-height: 120px;
+  padding: 11px 0;
+  background: transparent;
+  border: 0;
+  font-size: 16px; /* prevents iOS zoom */
+  line-height: 1.4;
+  field-sizing: content;
+}
+.composer textarea:focus {
+  outline: none;
+}
+.composer textarea::placeholder {
+  color: var(--c-muted-2);
+}
+.send {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: var(--radius-s);
+  background: var(--c-accent);
+  color: var(--c-bg);
+}
+.send:disabled {
+  background: var(--c-graphite-2);
+  color: var(--c-muted-2);
+  cursor: default;
+}
+.send svg {
+  width: 18px;
+  height: 18px;
+}
+.count {
+  position: absolute;
+  right: 68px;
+  bottom: 4px;
+  font-size: 10px;
+  color: var(--c-muted);
+}
+
+/* ---------- Mobile bottom sheet ---------- */
+@media (max-width: 640px) {
+  .orb {
+    width: 68px;
+    height: 68px;
+    right: max(14px, env(safe-area-inset-right));
+    bottom: max(14px, env(safe-area-inset-bottom));
+  }
+  .orbVisual {
+    inset: -10px;
+  }
+  .panel {
+    left: 0;
+    right: 0;
+    top: var(--vv-top, 0px);
+    bottom: auto;
+    width: 100%;
+    height: var(--vv-height, 100dvh);
+    padding-top: max(env(safe-area-inset-top), 24px);
+    background: rgba(8, 10, 13, 0.6);
+  }
+  .sheet {
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+  }
+  .composer {
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+  }
+  .msg {
+    max-width: 92%;
+  }
+}

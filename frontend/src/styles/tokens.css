@@ -1,0 +1,56 @@
+/* NEXUS design tokens */
+:root {
+  --c-bg: #080a0d;
+  --c-graphite: #11151b;
+  --c-graphite-2: #161b23;
+  --c-white: #f3f5f7;
+  --c-accent: #38bdf8;
+  --c-accent-soft: rgba(56, 189, 248, 0.14);
+  --c-accent-line: rgba(56, 189, 248, 0.45);
+  --c-muted: #8593a5;
+  --c-muted-2: #556172;
+  --c-line: rgba(243, 245, 247, 0.08);
+  --c-line-strong: rgba(243, 245, 247, 0.16);
+  --c-warn: #f2b54a;
+  --c-danger: #f47272;
+  --c-ok: #5ee0a8;
+
+  --font-sans: 'Inter Tight Variable', 'Inter Tight', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* fluid type scale */
+  --fs-mono-xs: 0.6875rem;
+  --fs-mono-sm: 0.75rem;
+  --fs-body: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --fs-lead: clamp(1.125rem, 1.02rem + 0.5vw, 1.4rem);
+  --fs-h3: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+  --fs-h2: clamp(2.25rem, 1.5rem + 3.4vw, 5rem);
+  --fs-h1: clamp(2.75rem, 1.6rem + 5.6vw, 8rem);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 144px;
+
+  --gutter: clamp(20px, 5vw, 72px);
+  --maxw: 1360px;
+  --radius-s: 2px;
+  --radius-m: 6px;
+  --hud-h: 56px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* "Mark II" easter egg: blueprint mode */
+:root.mark-ii {
+  --c-accent: #f3f5f7;
+  --c-accent-soft: rgba(243, 245, 247, 0.12);
+  --c-accent-line: rgba(243, 245, 247, 0.5);
+}

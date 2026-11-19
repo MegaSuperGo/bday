@@ -1,0 +1,23 @@
+{
+  "name": "operation-birthday-backend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "db:migrate:local": "wrangler d1 migrations apply operation-birthday --local",
+    "db:migrate:remote": "wrangler d1 migrations apply operation-birthday --remote",
+    "db:seed:dev": "wrangler d1 execute operation-birthday --local --file=./seed/dev.sql",
+    "hash-password": "node ../scripts/hash-password.mjs",
+    "gen-key": "node ../scripts/generate-encryption-key.mjs"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261118.1",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.1",
+    "wrangler": "^4.164.0"
+  }
+}

@@ -1,0 +1,17 @@
+name = "operation-birthday-api"
+main = "src/index.ts"
+compatibility_date = "2026-11-01"
+
+# Never put secrets here. Use `wrangler secret put` (see README).
+[vars]
+# Comma separated list of origins that may call the API (your GitHub Pages origin).
+ALLOWED_ORIGINS = "https://MegaSuperGo.github.io"
+# "None" (cross-site, GitHub Pages + workers.dev) or "Strict" (same-site custom domain)
+COOKIE_SAMESITE = "None"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "operation-birthday"
+# Replace with the id printed by `wrangler d1 create operation-birthday`
+database_id = "de8e4022-61b3-4a6d-b806-b49505805677"
+migrations_dir = "migrations"
