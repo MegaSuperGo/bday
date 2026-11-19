@@ -26,7 +26,7 @@ scripts/    Password-hash and encryption-key generators
 
 ## Prerequisites
 
-- Node.js 20+ and npm
+- Node.js 24 and npm 11 (the lockfiles are written by npm 11)
 - A Cloudflare account (the free plan is enough)
 - A GitHub repository for this project
 - A Groq API key from <https://console.groq.com/keys> (you enter it later in the dashboard)
